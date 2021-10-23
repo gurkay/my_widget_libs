@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../controllers/base_initial_data.dart';
 import 'route_generator.dart';
 import 'screens/screen_home_page.dart';
 
@@ -30,12 +31,19 @@ class MyApp extends StatelessWidget {
         if (asyncSnapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(home: Splash());
         } else {
-          return MaterialApp(
-            debugShowCheckedModeBanner: true,
-            title: 'Halim Mühendislik',
-            theme: ThemeData(primarySwatch: Colors.green),
-            home: const ScreenHomePage(),
-            onGenerateRoute: RouteGenerator.generateRoute,
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(
+                create: (_) => BaseInitialData()..load(),
+              ),
+            ],
+            child: MaterialApp(
+              debugShowCheckedModeBanner: true,
+              title: 'Halim Mühendislik',
+              theme: ThemeData(primarySwatch: Colors.green),
+              home: const ScreenHomePage(),
+              onGenerateRoute: RouteGenerator.generateRoute,
+            ),
           );
         }
       },
