@@ -36,7 +36,10 @@ class _ScreenHomePageDrawerState extends State<ScreenHomePageDrawer> {
                     children: [
                       Text(
                         'Header',
-                        style: textTheme.headline6,
+                        style: GoogleFonts.roboto(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -45,7 +48,7 @@ class _ScreenHomePageDrawerState extends State<ScreenHomePageDrawer> {
                   padding: const EdgeInsets.only(left: 16.0, top: 2.0),
                   child: Text(
                     'e-mail@gmail.com',
-                    style: GoogleFonts.abhayaLibre(fontSize: 12),
+                    style: GoogleFonts.roboto(fontSize: 10),
                   ),
                 ),
               ],

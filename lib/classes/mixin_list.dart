@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/model_component.dart';
 
 mixin MixinList {
@@ -23,8 +24,8 @@ mixin MixinList {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0,
-                      vertical: 15.0,
+                      horizontal: 5.0,
+                      vertical: 5.0,
                     ),
                     child: Row(
                       children: [
@@ -37,8 +38,18 @@ mixin MixinList {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(modelComponent[index].title),
-                            Text(modelComponent[index].description),
+                            Text(
+                              modelComponent[index].title,
+                              style: GoogleFonts.roboto(
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              modelComponent[index].description,
+                              style: GoogleFonts.roboto(
+                                fontSize: 10,
+                              ),
+                            ),
                           ],
                         ),
                         Expanded(
