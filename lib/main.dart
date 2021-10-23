@@ -55,24 +55,25 @@ class Splash extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
-                child: Image.asset('assets/icons/halim_logo.png'),
+              Image.asset(
+                'assets/icons/halim_logo.png',
+                height: MediaQuery.of(context).size.height * 0.50,
+                width: MediaQuery.of(context).size.width * 0.50,
               ),
               const SizedBox(
-                height: 10.0,
+                height: 5.0,
               ),
-              Expanded(
-                child: Text(
-                  'Halim Mühendislik',
-                  style: GoogleFonts.dancingScript(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 24,
-                  ),
+              Text(
+                'Halim Mühendislik',
+                style: GoogleFonts.dancingScript(
+                  fontStyle: FontStyle.normal,
+                  fontSize: 24,
                 ),
               ),
               const SizedBox(
-                height: 10.0,
+                height: 15.0,
               ),
               const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
