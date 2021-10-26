@@ -12,7 +12,7 @@ class BaseInitialData extends Base {
   void load() {
     setQhasdata(false);
     try {
-      _numberClickList = [0, 0];
+      _numberClickList = [0, 0, 0];
       setModelComponent(modelComponent);
       setQhasdata(true);
     } catch (e) {

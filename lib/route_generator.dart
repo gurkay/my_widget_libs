@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/screen_home_page.dart';
+import './screens/screen_question_app.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -9,6 +10,10 @@ class RouteGenerator {
       case '/ScreenHomePage':
         return MaterialPageRoute(
           builder: (_) => const ScreenHomePage(),
+        );
+      case '/ScreenQuestionApp':
+        return MaterialPageRoute(
+          builder: (_) => const ScreenQuestionApp(),
         );
       default:
         return _errorRoute();

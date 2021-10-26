@@ -13,4 +13,10 @@ final List<ModelComponent> modelComponent = [
     'assets/icons/divider.png',
     '/screen_divider_component',
   ),
+  ModelComponent(
+    'Question App',
+    'Info Question',
+    'assets/icons/question.png',
+    '/screen_question_app',
+  ),
 ];

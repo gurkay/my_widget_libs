@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/base_initial_data.dart';
-import 'route_generator.dart';
-import 'screens/screen_home_page.dart';
+import '../route_generator.dart';
+import '../screens/screen_home_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

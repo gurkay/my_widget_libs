@@ -80,6 +80,10 @@ mixin MixinList {
                                 onTap: () {
                                   _state.setNumberClickList(index);
                                   print(modelComponent[index].routeName);
+                                  Navigator.pushNamed(
+                                    context,
+                                    modelComponent[index].routeName,
+                                  );
                                 },
                                 child: Container(
                                   alignment: Alignment.bottomRight,
