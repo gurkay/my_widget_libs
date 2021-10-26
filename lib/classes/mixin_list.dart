@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +36,7 @@ mixin MixinList {
                     child: Row(
                       children: [
                         CircleAvatar(
+                          backgroundColor: Colors.white,
                           child: Image.asset(modelComponent[index].imagePath),
                         ),
                         const SizedBox(
@@ -60,26 +59,17 @@ mixin MixinList {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
                         Expanded(
-                          child: Wrap(
+                          child: Stack(
                             children: [
-                              Container(
-                                alignment: Alignment.topRight,
-                                child: CircleAvatar(
-                                  radius: MediaQuery.of(context).size.height *
-                                      0.010,
-                                  child: Text(
-                                    '${numberClickList[index]}',
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 8,
-                                    ),
-                                  ),
-                                ),
-                              ),
                               GestureDetector(
                                 onTap: () {
                                   _state.setNumberClickList(index);
                                   print(modelComponent[index].routeName);
+                                  print(context);
                                   Navigator.pushNamed(
                                     context,
                                     modelComponent[index].routeName,
@@ -88,6 +78,20 @@ mixin MixinList {
                                 child: Container(
                                   alignment: Alignment.bottomRight,
                                   child: const Icon(Icons.navigate_next),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topRight,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.amber[50],
+                                  radius: MediaQuery.of(context).size.height *
+                                      0.010,
+                                  child: Text(
+                                    '${numberClickList[index]}',
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 8,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],

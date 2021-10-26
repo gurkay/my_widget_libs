@@ -31,6 +31,9 @@ class BaseInitialData extends Base {
         case 1:
           _numberClickList[value] = _numberClickList[value] + 1;
           break;
+        case 2:
+          _numberClickList[value] = _numberClickList[value] + 1;
+          break;
         default:
       }
 

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ScreenQuestionApp extends StatelessWidget {
+class ScreenQuestionApp extends StatefulWidget {
   const ScreenQuestionApp({Key? key}) : super(key: key);
 
+  @override
+  State<ScreenQuestionApp> createState() => _ScreenQuestionAppState();
+}
+
+class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +17,9 @@ class ScreenQuestionApp extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [],
+        children: [
+          Text('data'),
+        ],
       ),
     );
   }
