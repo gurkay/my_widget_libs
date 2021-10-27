@@ -5,8 +5,22 @@ class ScreenListComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('List component'),
+      ),
+      body: Body(),
+    );
+  }
+}
+
+class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      child: Text('list component'),
+      child: Text('List components'),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './screens/screen_divider_component.dart';
+import './screens/screen_list_component.dart';
 
 import './screens/screen_home_page.dart';
 import './screens/screen_question_app.dart';
@@ -7,12 +9,22 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
-      case '/ScreenHomePage':
+      case '/screen_home_page':
         print('settings.name::: ${settings.name}');
         return MaterialPageRoute(
           builder: (_) => const ScreenHomePage(),
         );
-      case '/ScreenQuestionApp':
+      case '/screen_list_component':
+        print('settings.name::: ${settings.name}');
+        return MaterialPageRoute(
+          builder: (_) => const ScreenListComponent(),
+        );
+      case '/screen_divider_component':
+        print('settings.name::: ${settings.name}');
+        return MaterialPageRoute(
+          builder: (_) => const ScreenDividerComponent(),
+        );
+      case '/screen_question_app':
         print('settings.name::: ${settings.name}');
         return MaterialPageRoute(
           builder: (_) => const ScreenQuestionApp(),

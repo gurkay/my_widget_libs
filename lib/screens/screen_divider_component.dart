@@ -5,8 +5,22 @@ class ScreenDividerComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Divider Component'),
+      ),
+      body: Body(),
+    );
+  }
+}
+
+class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      child: Text('Divider component'),
+      child: Text('Divider components'),
     );
   }
 }

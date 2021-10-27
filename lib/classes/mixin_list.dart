@@ -83,7 +83,7 @@ mixin MixinList {
                               Container(
                                 alignment: Alignment.topRight,
                                 child: CircleAvatar(
-                                  backgroundColor: Colors.amber[50],
+                                  backgroundColor: Colors.amber,
                                   radius: MediaQuery.of(context).size.height *
                                       0.010,
                                   child: Text(
