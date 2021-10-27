@@ -24,7 +24,10 @@ mixin MixinList {
             child: GestureDetector(
               onTap: () {
                 _state.setNumberClickList(index);
-                print(modelComponent[index].routeName);
+                Navigator.pushNamed(
+                  context,
+                  modelComponent[index].routeName,
+                );
               },
               child: Column(
                 children: [
@@ -68,8 +71,6 @@ mixin MixinList {
                               GestureDetector(
                                 onTap: () {
                                   _state.setNumberClickList(index);
-                                  print(modelComponent[index].routeName);
-                                  print(context);
                                   Navigator.pushNamed(
                                     context,
                                     modelComponent[index].routeName,

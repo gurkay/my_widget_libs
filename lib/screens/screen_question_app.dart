@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../models/model_question.dart';
+import '../constants/const_question_app.dart';
+
 class ScreenQuestionApp extends StatefulWidget {
   const ScreenQuestionApp({Key? key}) : super(key: key);
 
@@ -8,12 +11,30 @@ class ScreenQuestionApp extends StatefulWidget {
 }
 
 class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
+  List<Widget> selections = [];
+  List<ModelQuestion> questions = [
+    ModelQuestion(
+      question: 'Marrakesh is the capital of Morocco?',
+      answer: false,
+    ),
+    ModelQuestion(
+      question: 'Waterloo has the greatest number of tube platforms in Londo?',
+      answer: true,
+    ),
+    ModelQuestion(
+      question: 'The unicorn is the national animal of Scotland?',
+      answer: true,
+    ),
+  ];
+  int questionIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigo[700],
       appBar: AppBar(
         title: Text('Question App'),
+        backgroundColor: Colors.indigo,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,7 +46,7 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
               padding: EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  'Question of info test',
+                  questions[questionIndex].question,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
@@ -34,6 +55,12 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
                 ),
               ),
             ),
+          ),
+          Wrap(
+            spacing: 10.0,
+            runSpacing: 10.0,
+            alignment: WrapAlignment.center,
+            children: selections,
           ),
           Expanded(
             flex: 1,
@@ -55,7 +82,12 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
                             size: 30.0,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            selections.add(cWrongIcon);
+                            questionIndex++;
+                          });
+                        },
                       ),
                     ),
                   ),
@@ -66,7 +98,12 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.green[400],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            selections.add(cRightIcon);
+                            questionIndex++;
+                          });
+                        },
                         child: Container(
                           padding: EdgeInsets.all(12.0),
                           child: Icon(
