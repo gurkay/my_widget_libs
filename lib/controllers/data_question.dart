@@ -28,8 +28,20 @@ class DataQuestion {
   }
 
   void setQuestionIndex() {
-    (_questionIndex < _questions.length - 1)
-        ? _questionIndex++
-        : _questionIndex = 0;
+    if (_questionIndex < _questions.length - 1) {
+      _questionIndex++;
+    }
+  }
+
+  bool finishedQuestions() {
+    if (_questionIndex >= _questions.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void returnFirstQuestion() {
+    _questionIndex = 0;
   }
 }

@@ -16,6 +16,38 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
   // abstraction object orientent programming
   DataQuestion question_1 = DataQuestion();
 
+  void buttonFunction(bool value) {
+    if (question_1.finishedQuestions()) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Test Finish'),
+              content: Text('Return test for click Close'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    setState(() {
+                      question_1.returnFirstQuestion();
+                      selections = [];
+                    });
+                  },
+                  child: Text('Close'),
+                ),
+              ],
+            );
+          });
+    } else {
+      setState(() {
+        question_1.getAnswer() == value
+            ? selections.add(cRightIcon)
+            : selections.add(cWrongIcon);
+        question_1.setQuestionIndex();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,12 +103,7 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
                           ),
                         ),
                         onPressed: () {
-                          setState(() {
-                            question_1.getAnswer() == false
-                                ? selections.add(cRightIcon)
-                                : selections.add(cWrongIcon);
-                            question_1.setQuestionIndex();
-                          });
+                          buttonFunction(false);
                         },
                       ),
                     ),
@@ -89,13 +116,7 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
                           primary: Colors.green[400],
                         ),
                         onPressed: () {
-                          setState(() {
-                            question_1.getAnswer() == true
-                                ? selections.add(cRightIcon)
-                                : selections.add(cWrongIcon);
-
-                            question_1.setQuestionIndex();
-                          });
+                          buttonFunction(true);
                         },
                         child: Container(
                           padding: EdgeInsets.all(12.0),
