@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/model_question.dart';
+import '../controllers/data_question.dart';
 import '../constants/const_question_app.dart';
 
 class ScreenQuestionApp extends StatefulWidget {
@@ -12,21 +12,9 @@ class ScreenQuestionApp extends StatefulWidget {
 
 class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
   List<Widget> selections = [];
-  List<ModelQuestion> questions = [
-    ModelQuestion(
-      question: 'Marrakesh is the capital of Morocco?',
-      answer: false,
-    ),
-    ModelQuestion(
-      question: 'Waterloo has the greatest number of tube platforms in Londo?',
-      answer: true,
-    ),
-    ModelQuestion(
-      question: 'The unicorn is the national animal of Scotland?',
-      answer: true,
-    ),
-  ];
-  int questionIndex = 0;
+
+  // abstraction object orientent programming
+  DataQuestion question_1 = DataQuestion();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +34,7 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
               padding: EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  questions[questionIndex].question,
+                  question_1.getQuestion(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
@@ -84,8 +72,10 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
                         ),
                         onPressed: () {
                           setState(() {
-                            selections.add(cWrongIcon);
-                            questionIndex++;
+                            question_1.getAnswer() == false
+                                ? selections.add(cRightIcon)
+                                : selections.add(cWrongIcon);
+                            question_1.setQuestionIndex();
                           });
                         },
                       ),
@@ -100,8 +90,11 @@ class _ScreenQuestionAppState extends State<ScreenQuestionApp> {
                         ),
                         onPressed: () {
                           setState(() {
-                            selections.add(cRightIcon);
-                            questionIndex++;
+                            question_1.getAnswer() == true
+                                ? selections.add(cRightIcon)
+                                : selections.add(cWrongIcon);
+
+                            question_1.setQuestionIndex();
                           });
                         },
                         child: Container(

@@ -1,3 +1,4 @@
+// abstraction object orientent programming
 class ModelQuestion {
   String question;
   bool answer;
