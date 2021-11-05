@@ -4,6 +4,7 @@ import './screens/screen_list_component.dart';
 
 import './screens/screen_home_page.dart';
 import './screens/screen_question_app.dart';
+import './screens/screen_life_time_app.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -28,6 +29,11 @@ class RouteGenerator {
         print('settings.name::: ${settings.name}');
         return MaterialPageRoute(
           builder: (_) => const ScreenQuestionApp(),
+        );
+      case '/screen_life_time_app':
+        print('settings.name::: ${settings.name}');
+        return MaterialPageRoute(
+          builder: (_) => const ScreenLifeTimeApp(),
         );
       default:
         return _errorRoute();

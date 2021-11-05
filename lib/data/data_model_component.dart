@@ -19,4 +19,10 @@ final List<ModelComponent> modelComponent = [
     'assets/icons/question.png',
     '/screen_question_app',
   ),
+  ModelComponent(
+    'Life Time App',
+    'This app is calculate one people life time',
+    'assets/icons/life_time.png',
+    '/screen_life_time_app',
+  ),
 ];
