@@ -25,4 +25,10 @@ final List<ModelComponent> modelComponent = [
     'assets/icons/life_time.png',
     '/screen_life_time_app',
   ),
+  ModelComponent(
+    'Max First App',
+    'This app is max teacher first app',
+    'assets/icons/maxFirstApp.png',
+    '/screen_max_first_app',
+  ),
 ];

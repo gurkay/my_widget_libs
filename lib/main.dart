@@ -40,7 +40,25 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               debugShowCheckedModeBanner: true,
               title: 'Halim Mühendislik',
-              theme: ThemeData(primarySwatch: Colors.green),
+              theme: ThemeData(
+                primarySwatch: Colors.purple,
+                fontFamily: 'Quicksand',
+                textTheme: ThemeData.light().textTheme.copyWith(
+                      subtitle1: const TextStyle(
+                        fontFamily: 'OpenSans',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                      button: TextStyle(color: Colors.white),
+                    ),
+                appBarTheme: const AppBarTheme(
+                  titleTextStyle: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               home: const ScreenHomePage(),
               onGenerateRoute: RouteGenerator.generateRoute,
             ),

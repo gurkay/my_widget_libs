@@ -37,6 +37,7 @@ dependencies:
   provider: ^6.0.1
   flutter_native_splash: ^1.2.4
   google_fonts: ^2.1.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +84,12 @@ flutter:
         - asset: assets/fonts/OpenSans-ExtraBold.ttf
         - asset: assets/fonts/OpenSans-Light.ttf
         - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 700
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand-Bold.ttf
+          weight: 700
     - family: Raleway
       fonts:
         - asset: assets/fonts/Raleway-ExtraBold.ttf
