@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/transaction.dart';
 import '../widgets/new_transaction.dart';
+import '../widgets/chart.dart';
 
 class ScreenMaxFirstApp extends StatefulWidget {
   const ScreenMaxFirstApp({Key? key}) : super(key: key);
@@ -66,9 +67,54 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
         return GestureDetector(
           onTap: () {},
           child: NewTransaction(_addNewTransaction),
+          behavior: HitTestBehavior.opaque,
         );
       },
     );
+  }
+
+  void _deleteTaransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
+  List<Widget> _buildLandscapeContent(
+    MediaQueryData mediaQueryData,
+    AppBar appBar,
+    Widget txListWidget,
+  ) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Show Chart',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          Switch.adaptive(
+            value: _showChart,
+            onChanged: (val) {
+              setState(() {
+                _showChart = val;
+              });
+            },
+            activeColor: Theme.of(context).colorScheme.primary,
+          )
+        ],
+      ),
+      _showChart
+          ? Container(
+              height: (mediaQueryData.size.height -
+                      appBar.preferredSize.height -
+                      mediaQueryData.padding.top) *
+                  0.7,
+              child: Chart(
+                recentTransactions: _recentTransactions,
+              ),
+            )
+          : txListWidget,
+    ];
   }
 
   @override
