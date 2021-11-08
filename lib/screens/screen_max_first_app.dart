@@ -1,6 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 import '../models/transaction.dart';
+import '../widgets/transaction_list.dart';
 import '../widgets/new_transaction.dart';
 import '../widgets/chart.dart';
 
@@ -24,7 +28,6 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    // TODO: implement didChangeAppLifecycleState
     print(state);
   }
 
@@ -73,7 +76,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
     );
   }
 
-  void _deleteTaransaction(String id) {
+  void _deleteTransaction(String id) {
     setState(() {
       _userTransactions.removeWhere((tx) => tx.id == id);
     });
@@ -117,8 +120,101 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
     ];
   }
 
+  List<Widget> _buildPortraitContent(
+    MediaQueryData mediaQueryData,
+    AppBar appBar,
+    Widget txListWidget,
+  ) {
+    return [
+      Container(
+        height: (mediaQueryData.size.height -
+                appBar.preferredSize.height -
+                mediaQueryData.padding.top) *
+            0.3,
+      ),
+      txListWidget,
+    ];
+  }
+
+  Widget _buildAppBar() {
+    return Platform.isIOS
+        ? CupertinoNavigationBar(
+            middle: Text('Personal Expenses'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  child: Icon(CupertinoIcons.add),
+                  onTap: () => _startAddNewTransaction(context),
+                )
+              ],
+            ),
+          )
+        : AppBar(
+            title: Text('Personal Expenses'),
+            actions: [
+              IconButton(
+                onPressed: () => _startAddNewTransaction(context),
+                icon: Icon(Icons.add),
+              ),
+            ],
+          );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    print('build()::: Screen Max First App');
+    final mediaQuery = MediaQuery.of(context);
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
+    final dynamic appBar = _buildAppBar();
+
+    final txListWidget = Container(
+      height: (mediaQuery.size.height -
+              appBar.preferredSize.height -
+              mediaQuery.padding.top) *
+          0.7,
+      child: TransactionList(
+        transactions: _userTransactions,
+        deleteTx: _deleteTransaction,
+      ),
+    );
+    final pageBody = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (isLandscape)
+              ..._buildLandscapeContent(
+                mediaQuery,
+                appBar,
+                txListWidget,
+              ),
+            if (!isLandscape)
+              ..._buildPortraitContent(
+                mediaQuery,
+                appBar,
+                txListWidget,
+              ),
+          ],
+        ),
+      ),
+    );
+    return Platform.isIOS
+        ? CupertinoPageScaffold(
+            child: pageBody,
+            navigationBar: appBar,
+          )
+        : Scaffold(
+            appBar: appBar,
+            body: pageBody,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: Platform.isIOS
+                ? Container()
+                : FloatingActionButton(
+                    onPressed: () => _startAddNewTransaction(context),
+                    child: Icon(Icons.add),
+                  ),
+          );
   }
 }

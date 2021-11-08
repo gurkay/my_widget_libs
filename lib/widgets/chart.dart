@@ -11,7 +11,7 @@ class Chart extends StatelessWidget {
     print('Constructor Chart');
   }
 
-  List<Map<String, Object>> get groupedTransactionValues {
+  List<Map<String, dynamic>> get groupedTransactionValues {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
