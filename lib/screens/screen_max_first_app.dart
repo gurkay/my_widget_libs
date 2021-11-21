@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 
 import '../models/transaction.dart';
 import '../widgets/transaction_list.dart';
@@ -139,19 +138,19 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
   Widget _buildAppBar() {
     return Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Personal Expenses'),
+            middle: const Text('Personal Expenses'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
-                  child: Icon(CupertinoIcons.add),
+                  child: const Icon(CupertinoIcons.add),
                   onTap: () => _startAddNewTransaction(context),
                 )
               ],
             ),
           )
         : AppBar(
-            title: Text('Personal Expenses'),
+            title: const Text('Personal Expenses'),
             actions: [
               IconButton(
                 onPressed: () => _startAddNewTransaction(context),
@@ -166,7 +165,9 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
     print('build()::: Screen Max First App');
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final dynamic appBar = _buildAppBar();
+    final PreferredSizeWidget appBar = (Platform.isIOS
+        ? CupertinoNavigationBar()
+        : AppBar()) as PreferredSizeWidget; //_buildAppBar();
 
     final txListWidget = Container(
       height: (mediaQuery.size.height -
@@ -213,7 +214,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
                 ? Container()
                 : FloatingActionButton(
                     onPressed: () => _startAddNewTransaction(context),
-                    child: Icon(Icons.add),
+                    child: const Icon(Icons.add),
                   ),
           );
   }
