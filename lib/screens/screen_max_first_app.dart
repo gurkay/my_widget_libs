@@ -83,7 +83,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
 
   List<Widget> _buildLandscapeContent(
     MediaQueryData mediaQueryData,
-    AppBar appBar,
+    dynamic appBar,
     Widget txListWidget,
   ) {
     return [
@@ -121,7 +121,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
 
   List<Widget> _buildPortraitContent(
     MediaQueryData mediaQueryData,
-    AppBar appBar,
+    dynamic appBar,
     Widget txListWidget,
   ) {
     return [
@@ -135,7 +135,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
     ];
   }
 
-  Widget _buildAppBar() {
+  dynamic _buildAppBar() {
     return Platform.isIOS
         ? CupertinoNavigationBar(
             middle: const Text('Personal Expenses'),
@@ -154,7 +154,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
             actions: [
               IconButton(
                 onPressed: () => _startAddNewTransaction(context),
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
               ),
             ],
           );
@@ -165,15 +165,10 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
     print('build()::: Screen Max First App');
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final PreferredSizeWidget appBar = (Platform.isIOS
-        ? CupertinoNavigationBar()
-        : AppBar()) as PreferredSizeWidget; //_buildAppBar();
+    final appBar = _buildAppBar();
 
     final txListWidget = Container(
-      height: (mediaQuery.size.height -
-              appBar.preferredSize.height -
-              mediaQuery.padding.top) *
-          0.7,
+      height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.7,
       child: TransactionList(
         transactions: _userTransactions,
         deleteTx: _deleteTransaction,
