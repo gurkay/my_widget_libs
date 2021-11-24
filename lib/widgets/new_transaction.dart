@@ -30,6 +30,7 @@ class _NewTransactionState extends State<NewTransaction> {
   @override
   void initState() {
     print('initState()');
+    _selectedDate = DateTime.parse('2019-01-01');
     super.initState();
   }
 
@@ -74,6 +75,7 @@ class _NewTransactionState extends State<NewTransaction> {
       if (pickedDate == null) {
         return;
       }
+
       setState(() {
         _selectedDate = pickedDate;
       });
