@@ -21,7 +21,7 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-  late DateTime _selectedDate;
+  DateTime _selectedDate = DateTime.parse('2019-01-01');
 
   _NewtransactionState() {
     print('Constructor NewTransaction State');
@@ -30,7 +30,7 @@ class _NewTransactionState extends State<NewTransaction> {
   @override
   void initState() {
     print('initState()');
-    _selectedDate = DateTime.parse('2019-01-01');
+    //_selectedDate = DateTime.parse('2019-01-01');
     super.initState();
   }
 
@@ -66,6 +66,7 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   void _presentDatePicker() {
+    print('_presentDatePicker() call...!');
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -80,7 +81,6 @@ class _NewTransactionState extends State<NewTransaction> {
         _selectedDate = pickedDate;
       });
     });
-    print('_presentDatePicker()');
   }
 
   @override
@@ -120,9 +120,9 @@ class _NewTransactionState extends State<NewTransaction> {
                             : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
                       ),
                     ),
-                    AdaptiveFlatButton(
-                      text: 'Choose Date',
-                      handler: _presentDatePicker,
+                    TextButton(
+                      onPressed: _presentDatePicker,
+                      child: const Text('Choose Date'),
                     ),
                   ],
                 ),

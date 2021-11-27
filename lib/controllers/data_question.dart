@@ -17,6 +17,15 @@ class DataQuestion {
       question: 'The unicorn is the national animal of Scotland?',
       answer: true,
     ),
+    ModelQuestion(
+        question:
+            'Halim TSK Mehmetçik Vakfı Hafize İhsan Payaza İlkokulu ve Ortaokulu 2.Sınıfa gider.',
+        answer: true),
+    ModelQuestion(
+        question: 'Halim in öğretmeninin adı Derya SAV dır.', answer: true),
+    ModelQuestion(
+        question: 'Halimin babası Bilgisayar Mühendisidir.', answer: true),
+    ModelQuestion(question: 'Ankara Türkiye nin başkentidir.', answer: true),
   ];
 
   String getQuestion() {
