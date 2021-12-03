@@ -98,6 +98,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
             value: _showChart,
             onChanged: (val) {
               setState(() {
+                print('val::: $val');
                 _showChart = val;
               });
             },
@@ -106,7 +107,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
         ],
       ),
       _showChart
-          ? Container(
+          ? SizedBox(
               height: (mediaQueryData.size.height -
                       appBar.preferredSize.height -
                       mediaQueryData.padding.top) *
@@ -167,7 +168,7 @@ class _ScreenMaxFirstAppState extends State<ScreenMaxFirstApp>
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final appBar = _buildAppBar();
 
-    final txListWidget = Container(
+    final txListWidget = SizedBox(
       height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.7,
       child: TransactionList(
         transactions: _userTransactions,
